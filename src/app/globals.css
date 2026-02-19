@@ -5,7 +5,16 @@
   --foreground: #1a1a1a;
   --accent: #1a4d2e;
   --accent-light: #d4a72c;
+  --accent-yellow: #d4a72c;
   --muted: #6b6b6b;
+}
+
+.text-accent-yellow {
+  color: var(--accent-yellow);
+}
+
+.bg-accent-yellow {
+  background-color: var(--accent-yellow);
 }
 
 html {
