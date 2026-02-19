@@ -1,10 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 type Language = "en" | "es";
+
+function getStoredLang(): Language {
+  if (typeof window === "undefined") return "en";
+  const stored = localStorage.getItem("jose-salazar-lang");
+  return (stored === "es" || stored === "en") ? stored : "en";
+}
+
+function setStoredLang(lang: Language) {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("jose-salazar-lang", lang);
+  }
+}
 
 const translations = {
   en: {
@@ -41,7 +53,7 @@ const translations = {
   },
 };
 
-function Navigation({ t, lang }: { t: typeof translations.en; lang: Language }) {
+function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang: Language; onLangChange: (l: Language) => void }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
@@ -63,12 +75,15 @@ function Navigation({ t, lang }: { t: typeof translations.en; lang: Language }) 
               {item.label}
             </Link>
           ))}
-          <Link href={`/education?lang=${lang === "en" ? "es" : "en"}`} className="ml-4 px-3 py-1 text-xs border border-[#d4a72c] text-[#d4a72c] hover:bg-[#d4a72c] hover:text-[#1a1a1a] transition-colors">
+          <button
+            onClick={() => onLangChange(lang === "en" ? "es" : "en")}
+            className="ml-4 px-3 py-1 text-xs border border-[#d4a72c] text-[#d4a72c] hover:bg-[#d4a72c] hover:text-[#1a1a1a] transition-colors"
+          >
             {lang === "en" ? "ES" : "EN"}
-          </Link>
+          </button>
         </div>
 
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2">
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden flex items-center gap-2 p-2">
           <div className="w-6 h-5 flex flex-col justify-between">
             <span className={`block h-0.5 bg-[#1a1a1a] ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
             <span className={`block h-0.5 bg-[#1a1a1a] ${isOpen ? 'opacity-0' : ''}`} />
@@ -91,7 +106,27 @@ function Footer({ t }: { t: typeof translations.en }) {
 }
 
 export default function EducationPage({ searchParams }: { searchParams: { lang?: string } }) {
-  const lang: Language = (searchParams?.lang as Language) || "en";
+  const [lang, setLang] = useState<Language>("en");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const urlLang = searchParams?.lang;
+    if (urlLang === "es" || urlLang === "en") {
+      setLang(urlLang);
+      setStoredLang(urlLang);
+    } else {
+      setLang(getStoredLang());
+    }
+  }, [searchParams?.lang]);
+
+  const handleLangChange = (newLang: Language) => {
+    setLang(newLang);
+    setStoredLang(newLang);
+  };
+
+  if (!mounted) return null;
+
   const t = translations[lang];
 
   const items = [
@@ -103,7 +138,7 @@ export default function EducationPage({ searchParams }: { searchParams: { lang?:
 
   return (
     <main className="min-h-screen bg-[#f5f4f1]">
-      <Navigation t={t} lang={lang} />
+      <Navigation t={t} lang={lang} onLangChange={handleLangChange} />
       
       <section className="pt-24 pb-16 md:pt-32 md:pb-24 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">

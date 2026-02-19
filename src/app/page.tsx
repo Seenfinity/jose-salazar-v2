@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
@@ -36,13 +36,24 @@ const translations = {
   },
 };
 
+function getStoredLang(): Language {
+  if (typeof window === "undefined") return "en";
+  const stored = localStorage.getItem("jose-salazar-lang");
+  return (stored === "es" || stored === "en") ? stored : "en";
+}
+
+function setStoredLang(lang: Language) {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("jose-salazar-lang", lang);
+  }
+}
+
 // Landing page with language selection
 function LandingPage({ onEnter, lang, onLangChange }: { onEnter: () => void; lang: Language; onLangChange: (l: Language) => void }) {
   const t = translations[lang];
   
   return (
     <div className="min-h-screen bg-[#1a1a1a] flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-64 h-64 border border-[#d4a72c] rounded-full" />
         <div className="absolute bottom-20 right-20 w-96 h-96 border border-[#d4a72c] rounded-full" />
@@ -69,7 +80,6 @@ function LandingPage({ onEnter, lang, onLangChange }: { onEnter: () => void; lan
           {t.enter}
         </button>
         
-        {/* Language selector */}
         <div className="mt-16 flex flex-col gap-3">
           <p className="text-[#6b6b6b] text-sm">{t.selectLanguage}</p>
           <div className="flex justify-center gap-4">
@@ -93,7 +103,7 @@ function LandingPage({ onEnter, lang, onLangChange }: { onEnter: () => void; lan
 }
 
 // Navigation
-function Navigation({ t, lang }: { t: typeof translations.en; lang: Language }) {
+function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang: Language; onLangChange: (l: Language) => void }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
@@ -104,12 +114,16 @@ function Navigation({ t, lang }: { t: typeof translations.en; lang: Language }) 
     { id: "contact", label: t.contact, href: "/contact" },
   ];
 
+  const toggleLang = () => {
+    const newLang = lang === "en" ? "es" : "en";
+    onLangChange(newLang);
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/95 backdrop-blur-sm border-b border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
         <Link href="/" className="font-display text-xl md:text-2xl font-bold text-[#1a4d2e]">José Salazar</Link>
         
-        {/* Desktop nav */}
         <div className="hidden md:flex gap-6 items-center">
           {navItems.map((item) => (
             <Link
@@ -120,24 +134,19 @@ function Navigation({ t, lang }: { t: typeof translations.en; lang: Language }) 
               {item.label}
             </Link>
           ))}
-          {/* Language toggle */}
-          <Link
-            href="/"
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href = `/?lang=${lang === "en" ? "es" : "en"}`;
-            }}
+          <button
+            onClick={toggleLang}
             className="ml-4 px-3 py-1 text-xs border border-[#d4a72c] text-[#d4a72c] hover:bg-[#d4a72c] hover:text-[#1a1a1a] transition-colors"
           >
             {lang === "en" ? "ES" : "EN"}
-          </Link>
+          </button>
         </div>
 
-        {/* Mobile hamburger */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2"
+          className="md:hidden flex items-center gap-2 p-2"
         >
+          <span className="text-sm text-[#1a1a1a] uppercase font-medium">Menu</span>
           <div className="w-6 h-5 flex flex-col justify-between">
             <span className={`block h-0.5 bg-[#1a1a1a] transition-transform ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
             <span className={`block h-0.5 bg-[#1a1a1a] ${isOpen ? 'opacity-0' : ''}`} />
@@ -146,7 +155,6 @@ function Navigation({ t, lang }: { t: typeof translations.en; lang: Language }) 
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 
@@ -167,9 +175,7 @@ function Navigation({ t, lang }: { t: typeof translations.en; lang: Language }) 
                 </Link>
               ))}
               <button
-                onClick={() => {
-                  window.location.href = `/?lang=${lang === "en" ? "es" : "en"}`;
-                }}
+                onClick={toggleLang}
                 className="text-left text-lg text-[#d4a72c] py-2"
               >
                 {lang === "en" ? "Español" : "English"}
@@ -247,17 +253,35 @@ function Footer({ t }: { t: typeof translations.en }) {
 
 export default function Home({ searchParams }: { searchParams: { lang?: string } }) {
   const [showLanding, setShowLanding] = useState(true);
-  const [lang, setLang] = useState<Language>((searchParams?.lang as Language) || "en");
+  const [lang, setLang] = useState<Language>("en");
+  const [mounted, setMounted] = useState(false);
 
-  const t = translations[lang];
+  useEffect(() => {
+    setMounted(true);
+    // Check URL param first, then localStorage
+    const urlLang = searchParams?.lang;
+    if (urlLang === "es" || urlLang === "en") {
+      setLang(urlLang);
+      setStoredLang(urlLang);
+    } else {
+      setLang(getStoredLang());
+    }
+  }, [searchParams?.lang]);
+
+  const handleLangChange = (newLang: Language) => {
+    setLang(newLang);
+    setStoredLang(newLang);
+  };
 
   const handleEnter = () => {
     setShowLanding(false);
   };
 
-  const handleLangChange = (newLang: Language) => {
-    setLang(newLang);
-  };
+  if (!mounted) {
+    return null; // Prevent hydration mismatch
+  }
+
+  const t = translations[lang];
 
   return (
     <main className="min-h-screen bg-[#faf9f7]">
@@ -278,7 +302,7 @@ export default function Home({ searchParams }: { searchParams: { lang?: string }
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Navigation t={t} lang={lang} />
+            <Navigation t={t} lang={lang} onLangChange={handleLangChange} />
             <Hero t={t} />
             <Footer t={t} />
           </motion.div>
