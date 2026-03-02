@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
+import { Inter, Crimson_Text } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -7,15 +7,15 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const cormorant = Cormorant_Garamond({ 
-  weight: ["300", "400", "500", "600", "700"],
+const crimsonText = Crimson_Text({ 
+  weight: ["400", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-cormorant",
+  variable: "--font-crimson",
 });
 
 export const metadata: Metadata = {
-  title: "José Salazar | Classical Conductor",
-  description: "Jette Parker Ballet Conductor at the Royal Opera House London.",
+  title: "José Salazar | Orchestral Conductor",
+  description: "Jette Parker Ballet Conductor at the Royal Opera House London. Dudamel Fellow with the Los Angeles Philharmonic.",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${cormorant.variable} antialiased`}>
+      <body className={`${inter.variable} ${crimsonText.variable} antialiased`}>
         {children}
       </body>
     </html>

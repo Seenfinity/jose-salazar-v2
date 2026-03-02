@@ -3,18 +3,18 @@
 :root {
   --background: #faf9f7;
   --foreground: #1a1a1a;
-  --accent: #1a4d2e;
-  --accent-light: #d4a72c;
-  --accent-yellow: #d4a72c;
+  --accent: #8b2635;
+  --accent-light: #a83246;
+  --accent-gold: #d4a72c;
   --muted: #6b6b6b;
 }
 
 .text-accent-yellow {
-  color: var(--accent-yellow);
+  color: var(--accent-gold);
 }
 
 .bg-accent-yellow {
-  background-color: var(--accent-yellow);
+  background-color: var(--accent-gold);
 }
 
 html {
@@ -28,15 +28,15 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-crimson), Georgia, serif;
 }
 
 .font-serif {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-crimson), Georgia, serif;
 }
 
 .font-display {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-crimson), Georgia, serif;
 }
 
 html {

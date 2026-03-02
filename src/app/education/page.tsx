@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { AnimatePresence } from "framer-motion";
 
 type Language = "en" | "es";
 
@@ -20,36 +21,42 @@ function setStoredLang(lang: Language) {
 
 const translations = {
   en: {
-    about: "About",
-    education: "Education",
-    gallery: "Gallery",
-    performances: "Performances",
-    contact: "Contact",
-    educationTitle: "Music Education",
-    aim: "Academy of Impact Through Music (AIM)",
-    aimDesc: "Conductor, group leader, and teaching artist",
-    itac: "International Teaching Artists Collaborative (ITAC)",
-    itacDesc: "Global discussions for arts education improvement",
-    sistemaGreece: "El Sistema Greece",
-    sistemaDesc: "5 years as Artistic & Music Director",
-    lectures: "Lectures",
-    lecturesDesc: "Berklee Valencia, Vienna, Mumbai",
+    nav: {
+      about: "About",
+      education: "Education",
+      gallery: "Gallery",
+      performances: "Performances",
+      contact: "Contact",
+    },
+    title: "Education",
+    intro: "José believes in access to education and artistic quality as a powerful tool for social development. Coming from \"El Sistema\" in Venezuela, where he had full access to music education and performance opportunities, he has taken on the mission to ensure music learning of the highest quality is made accessible, considering also the holistic and personal development of every participant.",
+    body: `He has been engaged as a conductor, group leader, and teaching artist in different global initiatives such as the Academy of Impact Through Music (AIM) and the International Teaching Artist Collaborative (ITAC), where he participated in global discussions to contribute solutions for the improvement and enhancement of the arts education field, especially related to music.
+
+He has had the chance to collaborate and consult with different music education programs around the world such as Sounds of Palestine, Beirut Chants-El Sistema (Lebanon), Nucleo (UK), Dream Orchestra (Sweden), Orquesta Geração (Portugal), Acción por la música (Spain), El Sistema Cyprus, Liberamusica (Italy), Orchestras for All (UK), Saint Lucia School of Music, FOSJE (Ecuador), among others, and he was, for five years, the artistic and music director of El Sistema Greece, a music education program for social action, where he worked for the development of the artistic planning, the academic structure, and the delivery of the educational program.
+
+As part of his work on advocacy for El Sistema Greece, José has conducted lectures on the topics of human rights, education, and music for social action in different institutions such as University of Berklee Valencia, University of Applied Arts in Vienna, Tata Institute of Social Sciences Mumbai, and Forward College Lisbon.
+
+In his native Venezuela, José served as Music Director of the Nueva Esparta Youth Symphony Orchestra from 2012 to 2016, working hard on community engagement, management, and artistic planning. He continues to collaborate with El Sistema in Venezuela, where he is regularly invited to conduct professional and youth orchestras, and mentor young conductors.`,
   },
   es: {
-    about: "Sobre Mí",
-    education: "Educación",
-    gallery: "Galería",
-    performances: "Actuaciones",
-    contact: "Contacto",
-    educationTitle: "Educación Musical",
-    aim: "Academia de Impacto a Través de la Música (AIM)",
-    aimDesc: "Director, líder de grupo y artista docente",
-    itac: "Colaborativo Internacional de Artistas Docentes (ITAC)",
-    itacDesc: "Discusiones globales para mejorar la educación artística",
-    sistemaGreece: "El Sistema Grecia",
-    sistemaDesc: "5 años como Director Artístico y Musical",
-    lectures: "Conferencias",
-    lecturesDesc: "Berklee Valencia, Viena, Mumbai",
+    nav: {
+      about: "Sobre Mí",
+      education: "Educación",
+      gallery: "Galería",
+      performances: "Actuaciones",
+      contact: "Contacto",
+    },
+    title: "Educación",
+    intro: "José cree en el acceso a la educación y la calidad artística como una herramienta poderosa para el desarrollo social. Proveniente de \"El Sistema\" en Venezuela, donde tuvo acceso completo a la educación musical y oportunidades de actuación, ha asumido la misión de garantizar que el aprendizaje musical de la más alta calidad sea accesible, considerando también el desarrollo holístico y personal de cada participante.",
+    body: `Ha participado como director, líder de grupo y artista docente en diferentes iniciativas globales como la Academy of Impact Through Music (AIM) y el International Teaching Artist Collaborative (ITAC), donde participó en discusiones globales para contribuir con soluciones para la mejora y el enriquecimiento del campo de la educación artística, especialmente relacionada con la música.
+
+Ha tenido la oportunidad de colaborar y consultar con diferentes programas de educación musical alrededor del mundo como Sounds of Palestine, Beirut Chants-El Sistema (Líbano), Nucleo (UK), Dream Orchestra (Suecia), Orquesta Geração (Portugal), Acción por la música (España), El Sistema Cyprus, Liberamusica (Italia), Orchestras for All (UK), Saint Lucia School of Music, FOSJE (Ecuador), entre otros, y fue, durante cinco años, el director artístico y musical de El Sistema Grecia, un programa de educación musical para la acción social, donde trabajó en el desarrollo de la planificación artística, la estructura académica y la entrega del programa educativo.
+
+Como parte de su trabajo de defensa por El Sistema Grecia, José ha impartido conferencias sobre los temas de derechos humanos, educación y música para la acción social en diferentes instituciones como la Universidad de Berklee Valencia, la Universidad de Artes Aplicadas de Viena, el Tata Institute of Social Sciences Mumbai y Forward College Lisboa.
+
+En su Venezuela natal, José se desempeñó como Director Musical de la Orquesta Juvenil de Nueva Esparta desde 2012 hasta 2016, trabajando duro en la participación comunitaria, gestión y planificación artística. Continúa colabor
+
+ando con El Sistema en Venezuela, donde regularmente es invitado a dirigir orquestas profesionales y juveniles, y mentorizar a jóvenes directores.`,
   },
 };
 
@@ -57,27 +64,36 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { id: "about", label: t.about, href: "/about" },
-    { id: "education", label: t.education, href: "/education" },
-    { id: "gallery", label: t.gallery, href: "/gallery" },
-    { id: "schedule", label: t.performances, href: "/schedule" },
-    { id: "contact", label: t.contact, href: "/contact" },
+    { id: "about", label: t.nav.about, href: "/about" },
+    { id: "education", label: t.nav.education, href: "/education" },
+    { id: "gallery", label: t.nav.gallery, href: "/gallery" },
+    { id: "schedule", label: t.nav.performances, href: "/schedule" },
+    { id: "contact", label: t.nav.contact, href: "/contact" },
   ];
+
+  const toggleLang = () => {
+    const newLang = lang === "en" ? "es" : "en";
+    onLangChange(newLang);
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/95 backdrop-blur-sm border-b border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
-        <Link href="/" className="font-display text-xl md:text-2xl font-bold text-[#1a4d2e]">José Salazar</Link>
+        <Link href="/" className="font-display text-xl md:text-2xl font-bold text-[#8b2635]">José Salazar</Link>
         
         <div className="hidden md:flex gap-6 items-center">
           {navItems.map((item) => (
-            <Link key={item.id} href={item.href} className="text-sm text-[#6b6b6b] hover:text-[#1a4d2e] transition-colors uppercase tracking-wider">
+            <Link
+              key={item.id}
+              href={item.href}
+              className="text-sm text-[#6b6b6b] hover:text-[#8b2635] transition-colors uppercase tracking-wider"
+            >
               {item.label}
             </Link>
           ))}
           <button
-            onClick={() => onLangChange(lang === "en" ? "es" : "en")}
-            className="ml-4 px-3 py-1 text-xs border border-[#d4a72c] text-[#d4a72c] hover:bg-[#d4a72c] hover:text-[#1a1a1a] transition-colors"
+            onClick={toggleLang}
+            className="ml-4 px-3 py-1 text-xs border border-[#8b2635] text-[#8b2635] hover:bg-[#8b2635] hover:text-white transition-colors"
           >
             {lang === "en" ? "ES" : "EN"}
           </button>
@@ -91,6 +107,33 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
           </div>
         </button>
       </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-[#faf9f7] border-t border-[#e5e5e5]"
+          >
+            <div className="px-4 py-4 flex flex-col gap-4">
+              {navItems.map((item) => (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  className="text-left text-lg text-[#6b6b6b] hover:text-[#8b2635] transition-colors uppercase tracking-wider py-2"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <button onClick={toggleLang} className="text-left text-lg text-[#8b2635] py-2">
+                {lang === "en" ? "Español" : "English"}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
@@ -99,7 +142,11 @@ function Footer({ t }: { t: typeof translations.en }) {
   return (
     <footer className="py-6 md:py-8 px-4 md:px-6 bg-[#faf9f7] border-t border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto text-center">
-        <p className="text-sm text-[#6b6b6b]">© 2026 José Salazar. Photo by Lope Valles.</p>
+        <p className="text-sm text-[#6b6b6b] mb-4">© 2026 José Salazar. Photo by Lope Valles.</p>
+        <div className="flex justify-center gap-6">
+          <a href="https://www.instagram.com/josesalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#8b2635] hover:text-[#a83246] transition-colors uppercase tracking-wider text-sm">Instagram</a>
+          <a href="https://youtube.com/@jasalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#8b2635] hover:text-[#a83246] transition-colors uppercase tracking-wider text-sm">YouTube</a>
+        </div>
       </div>
     </footer>
   );
@@ -129,15 +176,8 @@ export default function EducationPage({ searchParams }: { searchParams: { lang?:
 
   const t = translations[lang];
 
-  const items = [
-    { title: t.aim, desc: t.aimDesc },
-    { title: t.itac, desc: t.itacDesc },
-    { title: t.sistemaGreece, desc: t.sistemaDesc },
-    { title: t.lectures, desc: t.lecturesDesc },
-  ];
-
   return (
-    <main className="min-h-screen bg-[#f5f4f1]">
+    <main className="min-h-screen bg-[#faf9f7]">
       <Navigation t={t} lang={lang} onLangChange={handleLangChange} />
       
       <section className="pt-24 pb-16 md:pt-32 md:pb-24 px-4 md:px-6">
@@ -146,26 +186,26 @@ export default function EducationPage({ searchParams }: { searchParams: { lang?:
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-10 md:mb-16"
           >
-            <h1 className="font-display text-5xl md:text-7xl text-[#1a1a1a] mb-3 md:mb-4">{t.educationTitle}</h1>
-            <div className="w-16 md:w-24 h-[2px] bg-[#d4a72c] mx-auto" />
+            <h1 className="font-display text-5xl md:text-7xl text-[#1a1a1a] mb-6 md:mb-8">{t.title}</h1>
+            <div className="w-16 md:w-24 h-[2px] bg-[#8b2635] mb-8 md:mb-12" />
+            
+            <div className="grid md:grid-cols-2 gap-8 md:gap-16">
+              <div className="aspect-[3/4] overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80" 
+                  alt="José Salazar - Education"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="space-y-6 text-[#6b6b6b] leading-relaxed">
+                <p className="text-xl md:text-2xl text-[#1a1a1a] font-serif">{t.intro}</p>
+                {t.body.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className="text-base md:text-lg">{paragraph}</p>
+                ))}
+              </div>
+            </div>
           </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {items.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white p-5 md:p-8 hover:shadow-lg transition-shadow"
-              >
-                <h3 className="font-display text-lg md:text-xl text-[#1a1a1a] mb-2 md:mb-3">{item.title}</h3>
-                <p className="text-sm text-[#6b6b6b]">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
