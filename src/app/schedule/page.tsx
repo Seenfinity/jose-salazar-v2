@@ -141,14 +141,23 @@ function Footer({ t }: { t: typeof translations.en }) {
 }
 
 // Performance data from document
-const upcomingPerformances = [
+interface Performance {
+  date: string;
+  event: string;
+  venue: string;
+  location: string;
+  role: string;
+  notes?: string;
+}
+
+const upcomingPerformances: Performance[] = [
   { date: "2025/26", event: "La Fille mal gardée", venue: "Royal Ballet", location: "Covent Garden & Tokyo Tour", role: "Conductor" },
   { date: "2025/26", event: "The Nutcracker", venue: "Birmingham Royal Ballet", location: "Birmingham, UK", role: "Conductor" },
   { date: "2025/26", event: "Giselle", venue: "Greek National Opera Ballet", location: "Athens, Greece", role: "Conductor (Debut)" },
   { date: "Mar 2026", event: "Beethoven's Symphony No. 7, Mendelssohn Violin Concerto, Gabriela Ortiz Kauyumari", venue: "LA Philharmonic", location: "Walt Disney Concert Hall, Los Angeles", role: "Podium Debut" },
 ];
 
-const pastPerformances2024 = [
+const pastPerformances2024: Performance[] = [
   { date: "Jul 2024", event: "YOLA National Festival", venue: "Symphony Orchestra of the YOLA National Festival", location: "Walt Disney Concert Hall, Los Angeles", role: "Conductor", notes: "US Debut" },
   { date: "Oct 2024", event: "La Fille Mal Gardée", venue: "Birmingham Royal Ballet", location: "Birmingham Hippodrome", role: "Conductor", notes: "UK Debut" },
   { date: "Apr 2025", event: "Simón Bolívar Symphony Orchestra", venue: "Sala Simón Bolívar", location: "Caracas, Venezuela", role: "Guest Conductor", notes: "Debut" },
@@ -163,7 +172,7 @@ const pastPerformances2024 = [
   { date: "Sep-Oct 2024", event: "Alice in Wonderland", venue: "Royal Opera House", location: "Covent Garden", role: "Cover Conductor" },
 ];
 
-const pastPerformances2023 = [
+const pastPerformances2023: Performance[] = [
   { date: "Jul 2024", event: "Jette Parker Artists Summer Performance", venue: "Royal Opera House", location: "London", role: "Conductor" },
   { date: "Jun 2024", event: "Strauss, Wagner, Copland", venue: "Paul Hymlyn Hall, Royal Opera House", location: "London", role: "Conductor" },
   { date: "Apr 2024", event: "Tchaikovsky Program", venue: "Sala Simón Bolívar", location: "Caracas, Venezuela", role: "Guest Conductor" },
