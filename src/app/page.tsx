@@ -439,7 +439,7 @@ function Footer({ t }: { t: typeof translations.en }) {
         </p>
         <div className="flex justify-center gap-6">
           <a 
-            href="https://www.instagram.com/josesalazarconductor" 
+            href="https://www.instagram.com/jasalazarmarin" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-[#8b2635] hover:text-[#a83246] transition-colors uppercase tracking-wider text-sm"
