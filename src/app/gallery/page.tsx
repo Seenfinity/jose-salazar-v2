@@ -68,21 +68,24 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/95 backdrop-blur-sm border-b border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
-        <Link href="/" className="font-display text-xl md:text-2xl font-bold text-[#8b2635]">José Salazar</Link>
+        <Link href="/" className="flex items-center gap-2 font-display text-xl md:text-2xl font-bold text-[#d4a72c]">
+          <img src="/logo-nav.png" alt="Logo" className="w-6 h-6" />
+          José Salazar
+        </Link>
         
         <div className="hidden md:flex gap-6 items-center">
           {navItems.map((item) => (
             <Link
               key={item.id}
               href={item.href}
-              className="text-sm text-[#6b6b6b] hover:text-[#8b2635] transition-colors uppercase tracking-wider"
+              className="text-sm text-[#6b6b6b] hover:text-[#d4a72c] transition-colors uppercase tracking-wider"
             >
               {item.label}
             </Link>
           ))}
           <button
             onClick={toggleLang}
-            className="ml-4 px-3 py-1 text-xs border border-[#8b2635] text-[#8b2635] hover:bg-[#8b2635] hover:text-white transition-colors"
+            className="ml-4 px-3 py-1 text-xs border border-[#d4a72c] text-[#d4a72c] hover:bg-[#d4a72c] hover:text-white transition-colors"
           >
             {lang === "en" ? "ES" : "EN"}
           </button>
@@ -110,13 +113,13 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
                 <Link
                   key={item.id}
                   href={item.href}
-                  className="text-left text-lg text-[#6b6b6b] hover:text-[#8b2635] transition-colors uppercase tracking-wider py-2"
+                  className="text-left text-lg text-[#6b6b6b] hover:text-[#d4a72c] transition-colors uppercase tracking-wider py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <button onClick={toggleLang} className="text-left text-lg text-[#8b2635] py-2">
+              <button onClick={toggleLang} className="text-left text-lg text-[#d4a72c] py-2">
                 {lang === "en" ? "Español" : "English"}
               </button>
             </div>
@@ -133,8 +136,8 @@ function Footer({ t }: { t: typeof translations.en }) {
       <div className="max-w-7xl mx-auto text-center">
         <p className="text-sm text-[#6b6b6b] mb-4">© 2026 José Salazar. Photo by Lope Valles.</p>
         <div className="flex justify-center gap-6">
-          <a href="https://www.instagram.com/josesalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#8b2635] hover:text-[#a83246] transition-colors uppercase tracking-wider text-sm">Instagram</a>
-          <a href="https://youtube.com/@jasalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#8b2635] hover:text-[#a83246] transition-colors uppercase tracking-wider text-sm">YouTube</a>
+          <a href="https://www.instagram.com/josesalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#d4a72c] hover:text-[#b8962e] transition-colors uppercase tracking-wider text-sm">Instagram</a>
+          <a href="https://youtube.com/@jasalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#d4a72c] hover:text-[#b8962e] transition-colors uppercase tracking-wider text-sm">YouTube</a>
         </div>
       </div>
     </footer>
@@ -173,14 +176,14 @@ export default function GalleryPage({ searchParams }: { searchParams: { lang?: s
     { id: "SIRyXG1Mmck", title: "Performance 3" },
   ];
 
-  // Placeholder photos - TODO: Replace with actual photos from Drive
+  // Gallery photos
   const photos = [
-    "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=600&q=80",
-    "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=600&q=80",
-    "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=600&q=80",
-    "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80",
-    "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&q=80",
-    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80",
+    "/gallery-1.jpg",
+    "/gallery-2.jpg",
+    "/gallery-3.jpg",
+    "/gallery-4.jpg",
+    "/gallery-5.jpg",
+    "/gallery-6.jpg",
   ];
 
   return (
@@ -197,19 +200,19 @@ export default function GalleryPage({ searchParams }: { searchParams: { lang?: s
             <div className="flex items-end justify-between mb-8 md:mb-12">
               <div>
                 <h1 className="font-display text-5xl md:text-7xl text-[#1a1a1a] mb-3 md:mb-4">{t.title}</h1>
-                <div className="w-16 md:w-24 h-[2px] bg-[#8b2635]" />
+                <div className="w-16 md:w-24 h-[2px] bg-[#d4a72c]" />
               </div>
               
               <div className="flex gap-4">
                 <button
                   onClick={() => setActiveTab("videos")}
-                  className={`text-sm uppercase tracking-wider transition-colors ${activeTab === "videos" ? "text-[#8b2635]" : "text-[#6b6b6b] hover:text-[#1a1a1a]"}`}
+                  className={`text-sm uppercase tracking-wider transition-colors ${activeTab === "videos" ? "text-[#d4a72c]" : "text-[#6b6b6b] hover:text-[#1a1a1a]"}`}
                 >
                   {t.videos}
                 </button>
                 <button
                   onClick={() => setActiveTab("photos")}
-                  className={`text-sm uppercase tracking-wider transition-colors ${activeTab === "photos" ? "text-[#8b2635]" : "text-[#6b6b6b] hover:text-[#1a1a1a]"}`}
+                  className={`text-sm uppercase tracking-wider transition-colors ${activeTab === "photos" ? "text-[#d4a72c]" : "text-[#6b6b6b] hover:text-[#1a1a1a]"}`}
                 >
                   {t.photos}
                 </button>
@@ -252,7 +255,7 @@ export default function GalleryPage({ searchParams }: { searchParams: { lang?: s
                       href="https://youtube.com/@jasalazarconductor" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-block px-6 py-3 bg-[#8b2635] text-white hover:bg-[#a83246] transition-colors uppercase tracking-wider text-sm"
+                      className="inline-block px-6 py-3 bg-[#d4a72c] text-white hover:bg-[#b8962e] transition-colors uppercase tracking-wider text-sm"
                     >
                       {t.youtubeChannel}
                     </a>

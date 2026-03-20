@@ -67,21 +67,24 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/95 backdrop-blur-sm border-b border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
-        <Link href="/" className="font-display text-xl md:text-2xl font-bold text-[#8b2635]">José Salazar</Link>
+        <Link href="/" className="flex items-center gap-2 font-display text-xl md:text-2xl font-bold text-[#d4a72c]">
+          <img src="/logo-nav.png" alt="Logo" className="w-6 h-6" />
+          José Salazar
+        </Link>
         
         <div className="hidden md:flex gap-6 items-center">
           {navItems.map((item) => (
             <Link
               key={item.id}
               href={item.href}
-              className="text-sm text-[#6b6b6b] hover:text-[#8b2635] transition-colors uppercase tracking-wider"
+              className="text-sm text-[#6b6b6b] hover:text-[#d4a72c] transition-colors uppercase tracking-wider"
             >
               {item.label}
             </Link>
           ))}
           <button
             onClick={toggleLang}
-            className="ml-4 px-3 py-1 text-xs border border-[#8b2635] text-[#8b2635] hover:bg-[#8b2635] hover:text-white transition-colors"
+            className="ml-4 px-3 py-1 text-xs border border-[#d4a72c] text-[#d4a72c] hover:bg-[#d4a72c] hover:text-white transition-colors"
           >
             {lang === "en" ? "ES" : "EN"}
           </button>
@@ -109,13 +112,13 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
                 <Link
                   key={item.id}
                   href={item.href}
-                  className="text-left text-lg text-[#6b6b6b] hover:text-[#8b2635] transition-colors uppercase tracking-wider py-2"
+                  className="text-left text-lg text-[#6b6b6b] hover:text-[#d4a72c] transition-colors uppercase tracking-wider py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <button onClick={toggleLang} className="text-left text-lg text-[#8b2635] py-2">
+              <button onClick={toggleLang} className="text-left text-lg text-[#d4a72c] py-2">
                 {lang === "en" ? "Español" : "English"}
               </button>
             </div>
@@ -132,8 +135,8 @@ function Footer({ t }: { t: typeof translations.en }) {
       <div className="max-w-7xl mx-auto text-center">
         <p className="text-sm text-[#6b6b6b] mb-4">© 2026 José Salazar. Photo by Lope Valles.</p>
         <div className="flex justify-center gap-6">
-          <a href="https://www.instagram.com/josesalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#8b2635] hover:text-[#a83246] transition-colors uppercase tracking-wider text-sm">Instagram</a>
-          <a href="https://youtube.com/@jasalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#8b2635] hover:text-[#a83246] transition-colors uppercase tracking-wider text-sm">YouTube</a>
+          <a href="https://www.instagram.com/josesalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#d4a72c] hover:text-[#b8962e] transition-colors uppercase tracking-wider text-sm">Instagram</a>
+          <a href="https://youtube.com/@jasalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#d4a72c] hover:text-[#b8962e] transition-colors uppercase tracking-wider text-sm">YouTube</a>
         </div>
       </div>
     </footer>
@@ -198,7 +201,7 @@ function PerformanceItem({ performance, isPast = false }: { performance: typeof 
     >
       <div className="flex flex-col md:flex-row md:gap-6">
         <div className="w-full md:w-32 flex-shrink-0 mb-2 md:mb-0">
-          <span className={`text-sm ${isPast ? 'text-[#6b6b6b]' : 'text-[#8b2635]'} font-medium`}>
+          <span className={`text-sm ${isPast ? 'text-[#6b6b6b]' : 'text-[#d4a72c]'} font-medium`}>
             {performance.date}
           </span>
         </div>
@@ -206,14 +209,14 @@ function PerformanceItem({ performance, isPast = false }: { performance: typeof 
           <h3 className="font-display text-lg md:text-xl text-[#1a1a1a]">{performance.event}</h3>
           <p className="text-sm md:text-base text-[#6b6b6b]">{performance.venue}</p>
           {performance.notes && (
-            <span className="inline-block mt-1 px-2 py-0.5 text-xs bg-[#8b2635]/10 text-[#8b2635]">
+            <span className="inline-block mt-1 px-2 py-0.5 text-xs bg-[#d4a72c]/10 text-[#d4a72c]">
               {performance.notes}
             </span>
           )}
         </div>
         <div className="w-full md:w-48 md:text-right">
           <p className="text-sm text-[#6b6b6b]">{performance.location}</p>
-          <p className="text-xs text-[#8b2635] mt-1">{performance.role}</p>
+          <p className="text-xs text-[#d4a72c] mt-1">{performance.role}</p>
         </div>
       </div>
     </motion.div>
@@ -256,7 +259,7 @@ export default function SchedulePage({ searchParams }: { searchParams: { lang?: 
             transition={{ duration: 0.6 }}
           >
             <h1 className="font-display text-5xl md:text-7xl text-[#1a1a1a] mb-6 md:mb-8">{t.title}</h1>
-            <div className="w-16 md:w-24 h-[2px] bg-[#8b2635] mb-10 md:mb-16" />
+            <div className="w-16 md:w-24 h-[2px] bg-[#d4a72c] mb-10 md:mb-16" />
             
             {/* Upcoming */}
             <div className="mb-12 md:mb-16">
