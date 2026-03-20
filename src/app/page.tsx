@@ -203,7 +203,7 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
             <Link
               key={item.id}
               href={item.href}
-              className="text-sm text-[white] hover:text-[#d4a72c] transition-colors uppercase tracking-wider"
+              className="text-sm text-[#6b6b6b] hover:text-[#d4a72c] transition-colors uppercase tracking-wider"
             >
               {item.label}
             </Link>
@@ -242,7 +242,7 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
                 <Link
                   key={item.id}
                   href={item.href}
-                  className="text-left text-lg text-[white] hover:text-[#d4a72c] transition-colors uppercase tracking-wider py-2"
+                  className="text-left text-lg text-[#6b6b6b] hover:text-[#d4a72c] transition-colors uppercase tracking-wider py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
@@ -279,7 +279,7 @@ function HeroSlide({ t }: { t: typeof translations.en }) {
               {t.home.heroTitle.split(" ")[0]}<br />
               <span className="italic text-[#d4a72c]">{t.home.heroTitle.split(" ").slice(1).join(" ")}</span>
             </h1>
-            <div className="space-y-2 text-base md:text-lg text-[white] max-w-md mx-auto md:mx-0 mb-6 md:mb-8">
+            <div className="space-y-2 text-base md:text-lg text-[#1a1a1a] max-w-md mx-auto md:mx-0 mb-6 md:mb-8">
               <p>{t.home.dudamel}</p>
               <p>{t.home.jetteParker}</p>
               <p>{t.home.artisticDirector}</p>
@@ -353,7 +353,7 @@ function PreviewSlide({
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-[#1a1a1a] mb-4 md:mb-6">
               {title}
             </h2>
-            <p className="text-[white] text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-md">
+            <p className="text-[#6b6b6b] text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-md">
               {preview}
             </p>
             <Link
@@ -401,7 +401,7 @@ function PreviewSlideAlt({
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-[#1a1a1a] mb-4 md:mb-6">
               {title}
             </h2>
-            <p className="text-[white] text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-md">
+            <p className="text-[#6b6b6b] text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-md">
               {preview}
             </p>
             <Link
@@ -449,7 +449,7 @@ function Footer({ t }: { t: typeof translations.en }) {
   return (
     <footer className="py-6 md:py-8 px-4 md:px-6 bg-[#faf9f7] border-t border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto text-center">
-        <p className="text-sm text-[white] mb-4">
+        <p className="text-sm text-[#6b6b6b] mb-4">
           {t.footer.copyright} Photo by Lope Valles.
         </p>
         <div className="flex justify-center gap-6">
