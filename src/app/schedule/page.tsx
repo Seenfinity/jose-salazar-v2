@@ -156,6 +156,7 @@ interface Performance {
 const upcomingPerformances: Performance[] = [
   { date: "Jun-Jul 2026", event: "Royal Ballet on Tour: Japan", venue: "The Royal Ballet", location: "Tokyo, Japan", role: "Conductor" },
   { date: "May-Jun 2026", event: "La Fille mal gardée", venue: "Royal Ballet", location: "Covent Garden, London", role: "Conductor" },
+  { date: "2026", event: "Symphonies for Schools", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Conductor" },
   { date: "Apr 25-26 2026", event: "John Adams & Víkingur Ólafsson", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Cover Conductor" },
   { date: "Apr 17-19 2026", event: "Shostakovich & Sibelius", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Cover Conductor" },
   { date: "Mar 13-16 2026", event: "John Williams & Rachmaninoff", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Cover Conductor" },
@@ -164,6 +165,7 @@ const upcomingPerformances: Performance[] = [
   { date: "Jan-Feb 2026", event: "Masters at Work", venue: "New York City Ballet", location: "NY, USA", role: "Cover Conductor" },
   { date: "Jan-Feb 2026", event: "Balanchine + Ratmansky", venue: "New York City Ballet", location: "NY, USA", role: "Conductor" },
   { date: "Dec 2025-Jan 2026", event: "Giselle", venue: "Greek National Ballet", location: "Athens, Greece", role: "Conductor" },
+  { date: "Dec 2025", event: "The Nutcracker", venue: "Birmingham Royal Ballet", location: "Birmingham, UK", role: "Conductor" },
   { date: "Nov 30 2025", event: "Inspirational Folk Music from the Americas", venue: "Bardi Symphony Orchestra", location: "London, UK", role: "Conductor" },
   { date: "Oct-Nov 2025", event: "La Fille mal gardée", venue: "Royal Ballet", location: "Covent Garden, London", role: "Conductor" },
   { date: "Sep 2025", event: "Romeo, Juliet & Dance Theatre of Harlem", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Cover Conductor" },
