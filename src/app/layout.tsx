@@ -18,15 +18,6 @@ export const metadata: Metadata = {
   description: "Jette Parker Ballet Conductor at the Royal Opera House London. Dudamel Fellow with the Los Angeles Philharmonic.",
 };
 
-export function HEAD() {
-  return (
-    <>
-      <link rel="icon" href="/favicon.png" type="image/png" />
-      <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-    </>
-  );
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
