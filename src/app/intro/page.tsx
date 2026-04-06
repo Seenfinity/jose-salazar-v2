@@ -1,10 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 type Language = "en" | "es";
 
@@ -12,7 +10,6 @@ const translations = {
   en: {
     welcomeTitle: "José Salazar",
     welcomeSubtitle: "Orchestral Conductor",
-    welcomeText: "Dear Visitor, welcome to my webpage, and thank you for taking a look at my work.",
     enter: "Enter",
     selectLanguage: "Select Language",
     nav: {
@@ -41,6 +38,7 @@ const translations = {
     },
     footer: {
       copyright: "© 2026 José Salazar.",
+      allRights: "All rights reserved.",
       instagram: "Instagram",
       youtube: "YouTube",
     },
@@ -48,7 +46,6 @@ const translations = {
   es: {
     welcomeTitle: "José Salazar",
     welcomeSubtitle: "Director de Orquesta",
-    welcomeText: "Querido lector, gracias por visitar mi sitio web y echar un ojo a mi trabajo.",
     enter: "Entrar",
     selectLanguage: "Seleccionar Idioma",
     nav: {
@@ -62,7 +59,7 @@ const translations = {
       heroTitle: "Excelencia en la Dirección",
       dudamel: "Dudamel Fellow de LAPhil (USA) (2025 - 2026)",
       jetteParker: "Director de Ballet Jette Parker en el Royal Opera House (UK) 2023 - 2025",
-      artisticDirector: "Director Artístico de El Sistema Greece (2018 - 2023)",
+      artisticDirector: "Director Artístico de El Sistema Grecia (2018 - 2023)",
       aboutTitle: "Sobre Mí",
       aboutPreview: "Destacado como Rising Star de Classic FM 2025 y actualmente Dudamel Fellow con la Filarmónica de Los Ángeles (2025/26), José Salazar es un director joven dinámico con amplia experiencia...",
       educationTitle: "Educación",
@@ -77,6 +74,7 @@ const translations = {
     },
     footer: {
       copyright: "© 2026 José Salazar.",
+      allRights: "Todos los derechos reservados.",
       instagram: "Instagram",
       youtube: "YouTube",
     },
@@ -89,94 +87,7 @@ function getStoredLang(): Language {
   return (stored === "es" || stored === "en") ? stored : "en";
 }
 
-function setStoredLang(lang: Language) {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("jose-salazar-lang", lang);
-  }
-}
-
-// Landing Page
-function LandingPage({ onEnter, lang, onLangChange }: { onEnter: () => void; lang: Language; onLangChange: (l: Language) => void }) {
-  const t = translations[lang];
-  
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img 
-          src="/intro-bg.jpg" 
-          alt="José Salazar conducting"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0f2818]/50 via-[#0f2818]/30 to-[#0f2818]/50" />
-      </div>
-      
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-64 h-64 border border-[#d4a72c] rounded-full" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 border border-[#d4a72c] rounded-full" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#d4a72c] rounded-full opacity-30" />
-      </div>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 text-center px-4"
-      >
-        <div className="flex items-center justify-center gap-4 mb-4">
-          <img 
-            src="/logo-salazar.png" 
-            alt="Logo" 
-            className="w-16 h-16 md:w-20 md:h-20"
-          />
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-white">
-            {t.welcomeTitle}
-          </h1>
-        </div>
-        <p className="text-[#d4a72c] uppercase tracking-[0.3em] text-sm md:text-base mb-6">
-          {t.welcomeSubtitle}
-        </p>
-        <p className="text-white text-lg mb-8 max-w-xl mx-auto italic">
-          {t.welcomeText}
-        </p>
-        
-        <button
-          onClick={onEnter}
-          className="px-8 py-4 bg-[#d4a72c] text-white hover:bg-[#b8962e] transition-colors uppercase tracking-wider text-lg"
-        >
-          {t.enter}
-        </button>
-        
-        <div className="mt-16 flex flex-col gap-3">
-          <p className="text-[white] text-sm">{t.selectLanguage}</p>
-          <div className="flex justify-center gap-4">
-            <button
-              onClick={() => onLangChange("en")}
-              className={`px-4 py-2 border transition-colors ${lang === "en" ? "border-[#d4a72c] text-[#d4a72c]" : "border-[white] text-[white] hover:border-white hover:text-white"}`}
-              style={{ boxShadow: "0 0 10px rgba(255,255,255,0.5)" }}
-            >
-              English
-            </button>
-            <button
-              onClick={() => onLangChange("es")}
-              className={`px-4 py-2 border transition-colors ${lang === "es" ? "border-[#d4a72c] text-[#d4a72c]" : "border-[white] text-[white] hover:border-white hover:text-white"}`}
-              style={{ boxShadow: "0 0 10px rgba(255,255,255,0.5)" }}
-            >
-              Español
-            </button>
-          </div>
-        </div>
-      </motion.div>
-      
-      {/* Photo credits */}
-      <div className="absolute bottom-4 right-4 text-white text-xs">
-        Photo by Elly Welford
-      </div>
-    </div>
-  );
-}
-
-// Navigation
+// Navigation - ORIGINAL de page.tsx pero con href="/intro"
 function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang: Language; onLangChange: (l: Language) => void }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -196,7 +107,7 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/95 backdrop-blur-sm border-b border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 font-display text-xl md:text-2xl font-bold text-[#d4a72c]">
+        <Link href="/intro" className="flex items-center gap-2 font-display text-xl md:text-2xl font-bold text-[#d4a72c]">
           <img src="/logo-nav.png" alt="Logo" className="w-6 h-6" />
           José Salazar
         </Link>
@@ -232,41 +143,32 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
         </button>
       </div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#faf9f7] border-t border-[#e5e5e5]"
+      {isOpen && (
+        <div className="md:hidden bg-[#faf9f7] border-t border-[#e5e5e5] px-4 py-4">
+          {navItems.map((item) => (
+            <Link
+              key={item.id}
+              href={item.href}
+              className="block py-2 text-[#6b6b6b] hover:text-[#d4a72c] transition-colors uppercase tracking-wider"
+              onClick={() => setIsOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <button
+            onClick={toggleLang}
+            className="py-2 text-[#d4a72c]"
           >
-            <div className="px-4 py-4 flex flex-col gap-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.id}
-                  href={item.href}
-                  className="text-left text-lg text-[#6b6b6b] hover:text-[#d4a72c] transition-colors uppercase tracking-wider py-2"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <button
-                onClick={toggleLang}
-                className="text-left text-lg text-[#d4a72c] py-2"
-              >
-                {lang === "en" ? "Español" : "English"}
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {lang === "en" ? "Español" : "English"}
+          </button>
+        </div>
+      )}
     </nav>
   );
 }
 
-// Home Hero Slide
-function HeroSlide({ t }: { t: typeof translations.en }) {
+// Home Hero Slide - ORIGINAL de page.tsx
+function HeroSlide({ t, lang }: { t: typeof translations.en; lang: Language }) {
   return (
     <section className="min-h-screen pt-16 md:pt-20 bg-[#faf9f7]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
@@ -277,10 +179,9 @@ function HeroSlide({ t }: { t: typeof translations.en }) {
             transition={{ duration: 0.8 }}
             className="order-2 md:order-1 text-center md:text-left"
           >
-            <p className="text-[#d4a72c] uppercase tracking-[0.2em] text-xs md:text-sm mb-3 md:mb-4">{t.welcomeSubtitle}</p>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-[#1a1a1a] leading-[0.95] mb-4 md:mb-6">
-              {t.home.heroTitle.split(" ")[0]}<br />
-              <span className="italic text-[#d4a72c]">{t.home.heroTitle.split(" ").slice(1).join(" ")}</span>
+            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-[#1a1a1a] leading-[0.95] mb-4 md:mb-6">
+              {lang === "en" ? "Orchestral" : "Director"}<br />
+              <span className="italic text-[#d4a72c]">{lang === "en" ? "Conductor" : "de Orquesta"}</span>
             </h1>
             <div className="space-y-2 text-base md:text-lg text-[#1a1a1a] max-w-md mx-auto md:mx-0 mb-6 md:mb-8">
               <p>{t.home.dudamel}</p>
@@ -311,7 +212,7 @@ function HeroSlide({ t }: { t: typeof translations.en }) {
   );
 }
 
-// Preview Slide Component
+// Preview Slide Component - ORIGINAL de page.tsx
 function PreviewSlide({ 
   title, 
   preview, 
@@ -372,7 +273,7 @@ function PreviewSlide({
   );
 }
 
-// Alternate layout preview slide
+// Alternate layout preview slide - ORIGINAL de page.tsx
 function PreviewSlideAlt({ 
   title, 
   preview, 
@@ -447,13 +348,13 @@ function PreviewSlideAlt({
   );
 }
 
-// Footer
+// Footer - ORIGINAL de page.tsx
 function Footer({ t }: { t: typeof translations.en }) {
   return (
     <footer className="py-6 md:py-8 px-4 md:px-6 bg-[#faf9f7] border-t border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto text-center">
         <p className="text-sm text-[#6b6b6b] mb-4">
-          {t.footer.copyright} Photo by Lope Valles.
+          {t.footer.copyright} {t.footer.allRights}
         </p>
         <div className="flex justify-center gap-6">
           <a 
@@ -478,30 +379,20 @@ function Footer({ t }: { t: typeof translations.en }) {
   );
 }
 
-export default function Home({ searchParams }: { searchParams: { lang?: string } }) {
-  const router = useRouter();
-  const [showLanding, setShowLanding] = useState(true);
+export default function IntroPage() {
   const [lang, setLang] = useState<Language>("en");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const urlLang = searchParams?.lang;
-    if (urlLang === "es" || urlLang === "en") {
-      setLang(urlLang);
-      setStoredLang(urlLang);
-    } else {
-      setLang(getStoredLang());
-    }
-  }, [searchParams?.lang]);
+    setLang(getStoredLang());
+  }, []);
 
   const handleLangChange = (newLang: Language) => {
     setLang(newLang);
-    setStoredLang(newLang);
-  };
-
-  const handleEnter = () => {
-    router.push("/intro");
+    if (typeof window !== "undefined") {
+      localStorage.setItem("jose-salazar-lang", newLang);
+    }
   };
 
   if (!mounted) {
@@ -510,87 +401,60 @@ export default function Home({ searchParams }: { searchParams: { lang?: string }
 
   const t = translations[lang];
 
-  // Sample images - TODO: Replace with actual images from Drive
   const aboutImage = "/about-hero.jpg";
   const educationImage = "/education-preview.jpg";
-  const galleryImage = "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&q=80";
+  const galleryImage = "/gallery-preview.jpg";
   const performancesImage = "/performances-preview.jpg";
   const contactImage = "/contact-preview.jpg";
 
   return (
     <main className="min-h-screen bg-[#faf9f7]">
-      <AnimatePresence mode="wait">
-        {showLanding ? (
-          <motion.div
-            key="landing"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <LandingPage onEnter={handleEnter} lang={lang} onLangChange={handleLangChange} />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="main"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Navigation t={t} lang={lang} onLangChange={handleLangChange} />
-            
-            {/* Hero Slide */}
-            <HeroSlide t={t} />
-            
-            {/* About Preview */}
-            <PreviewSlide 
-              title={t.home.aboutTitle}
-              preview={t.home.aboutPreview}
-              image={aboutImage}
-              link="/about"
-              lang={lang}
-            />
-            
-            {/* Education Preview - alternate layout */}
-            <PreviewSlideAlt
-              title={t.home.educationTitle}
-              preview={t.home.educationPreview}
-              image={educationImage}
-              link="/education"
-              lang={lang}
-            />
-            
-            {/* Gallery Preview - with video */}
-            <PreviewSlideAlt
-              title={t.home.galleryTitle}
-              preview={t.home.galleryPreview}
-              image={galleryImage}
-              link="/gallery"
-              lang={lang}
-              video="https://www.youtube.com/embed/97_IlMryI-A"
-            />
-            
-            {/* Performances Preview */}
-            <PreviewSlide
-              title={t.home.performancesTitle}
-              preview={t.home.performancesPreview}
-              image={performancesImage}
-              link="/schedule"
-              lang={lang}
-            />
-            
-            {/* Contact Preview */}
-            <PreviewSlideAlt
-              title={t.home.contactTitle}
-              preview={t.home.contactPreview}
-              image={contactImage}
-              link="/contact"
-              lang={lang}
-            />
-            
-            <Footer t={t} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Navigation t={t} lang={lang} onLangChange={handleLangChange} />
+      
+      <HeroSlide t={t} lang={lang} />
+      
+      <PreviewSlide 
+        title={t.home.aboutTitle}
+        preview={t.home.aboutPreview}
+        image={aboutImage}
+        link="/about"
+        lang={lang}
+      />
+      
+      <PreviewSlideAlt
+        title={t.home.educationTitle}
+        preview={t.home.educationPreview}
+        image={educationImage}
+        link="/education"
+        lang={lang}
+      />
+      
+      <PreviewSlideAlt
+        title={t.home.galleryTitle}
+        preview={t.home.galleryPreview}
+        image={galleryImage}
+        link="/gallery"
+        lang={lang}
+        video="https://www.youtube.com/embed/97_IlMryI-A"
+      />
+      
+      <PreviewSlide
+        title={t.home.performancesTitle}
+        preview={t.home.performancesPreview}
+        image={performancesImage}
+        link="/schedule"
+        lang={lang}
+      />
+      
+      <PreviewSlideAlt
+        title={t.home.contactTitle}
+        preview={t.home.contactPreview}
+        image={contactImage}
+        link="/contact"
+        lang={lang}
+      />
+      
+      <Footer t={t} />
     </main>
   );
 }

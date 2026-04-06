@@ -40,6 +40,12 @@ Educated within El Sistema, José began his conducting studies with Felipe Izcar
 Born in 1997 on Margarita Island, Venezuela, José first came to prominence as a teenager and has since conducted widely in Venezuela and abroad. His work has been profiled by Reuters, The Guardian, and China National TV. Born to a family of educators, he is also a passionate linguist, fluent in Spanish, English, Italian, and Greek, and currently learning French and German.
 
 Promoters please note: We update our biographies regularly and ask that they are not altered without permission. For updated versions, please e-mail: Flora Dyson at fd@jamesbrownmanagement.com`,
+    footer: {
+      copyright: "© 2026 José Salazar.",
+      allRights: "All rights reserved.",
+      instagram: "Instagram",
+      youtube: "YouTube",
+    },
   },
   es: {
     nav: {
@@ -62,6 +68,12 @@ Educado dentro de El Sistema, José comenzó sus estudios de dirección con Feli
 Nacido en 1997 en la isla de Margarita, Venezuela, José llamó la atención por primera vez como adolescente y desde entonces ha dirigido ampliamente en Venezuela y en el extranjero. Su trabajo ha sido perfilado por Reuters, The Guardian y China National TV. Nacido en una familia de educadores, también es un apasionado lingüista, fluido en español, inglés, italiano y griego, y actualmente aprendiendo francés y alemán.
 
 Promotores por favor_nota: Actualizamos nuestras biografías regularmente y solicitamos que no sean alteradas sin permiso. Para versiones actualizadas, por favor envíe un correo a: Flora Dyson en fd@jamesbrownmanagement.com`,
+    footer: {
+      copyright: "© 2026 José Salazar.",
+      allRights: "Todos los derechos reservados.",
+      instagram: "Instagram",
+      youtube: "YouTube",
+    },
   },
 };
 
@@ -146,13 +158,13 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
   );
 }
 
-function Footer({ t }: { t: typeof translations.en }) {
+function Footer({ t }: { t: any }) {
   return (
     <footer className="py-6 md:py-8 px-4 md:px-6 bg-[#faf9f7] border-t border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto text-center">
-        <p className="text-sm text-[#6b6b6b] mb-4">© 2026 José Salazar. Photo by Lope Valles.</p>
+        <p className="text-sm text-[#6b6b6b] mb-4">{t.footer.copyright} {t.footer.allRights}</p>
         <div className="flex justify-center gap-6">
-          <a href="https://www.instagram.com/josesalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#d4a72c] hover:text-[#b8962e] transition-colors uppercase tracking-wider text-sm">Instagram</a>
+          <a href="https://www.instagram.com/josesalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#d4a72c] hover:text-[#b8962e] transition-colors uppercase tracking-wider text-sm">{t.footer.instagram}</a>
           <a href="https://youtube.com/@jasalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#d4a72c] hover:text-[#b8962e] transition-colors uppercase tracking-wider text-sm">YouTube</a>
         </div>
       </div>
@@ -200,15 +212,15 @@ export default function AboutPage({ searchParams }: { searchParams: { lang?: str
             <h1 className="font-display text-5xl md:text-7xl text-[#1a1a1a] mb-6 md:mb-8">{t.title}</h1>
             <div className="w-16 md:w-24 h-[2px] bg-[#d4a72c] mb-8 md:mb-12" />
             
-            <div className="grid md:grid-cols-2 gap-8 md:gap-16">
-              <div className="aspect-[3/4] overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+              <div className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden h-fit">
                 <img 
                   src="/about-hero.jpg" 
                   alt="José Salazar"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="space-y-6 text-[#6b6b6b] leading-relaxed">
+              <div className="flex flex-col justify-start space-y-6 text-[#6b6b6b] leading-relaxed">
                 {t.bio.split('\n\n').map((paragraph, index) => (
                   <p key={index} className="text-base md:text-lg">{paragraph}</p>
                 ))}

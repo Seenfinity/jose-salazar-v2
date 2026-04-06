@@ -71,7 +71,7 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/95 backdrop-blur-sm border-b border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 font-display text-xl md:text-2xl font-bold text-[#d4a72c]">
+        <Link href="/intro" className="flex items-center gap-2 font-display text-xl md:text-2xl font-bold text-[#d4a72c]">
           <img src="/logo-nav.png" alt="Logo" className="w-6 h-6" />
           José Salazar
         </Link>
@@ -137,7 +137,7 @@ function Footer({ t }: { t: typeof translations.en }) {
   return (
     <footer className="py-6 md:py-8 px-4 md:px-6 bg-[#faf9f7] border-t border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto text-center">
-        <p className="text-sm text-[#6b6b6b] mb-4">© 2026 José Salazar. Photo by Lope Valles.</p>
+        <p className="text-sm text-[#6b6b6b] mb-4">© 2026 José Salazar. Todos los derechos reservados.</p>
         <div className="flex justify-center gap-6">
           <a href="https://www.instagram.com/josesalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#d4a72c] hover:text-[#b8962e] transition-colors uppercase tracking-wider text-sm">Instagram</a>
           <a href="https://youtube.com/@jasalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#d4a72c] hover:text-[#b8962e] transition-colors uppercase tracking-wider text-sm">YouTube</a>

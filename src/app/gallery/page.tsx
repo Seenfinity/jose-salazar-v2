@@ -30,6 +30,8 @@ const translations = {
     title: "Gallery",
     videos: "Videos",
     photos: "Photos",
+    actionPictures: "Action Pictures",
+    studioPictures: "Studio Pictures",
     moreVideos: "If you are interested in watching more videos, contact us for further material.",
     youtubeChannel: "YouTube Channel",
   },
@@ -44,6 +46,8 @@ const translations = {
     title: "Galería",
     videos: "Videos",
     photos: "Fotos",
+    actionPictures: "Fotos de Acción",
+    studioPictures: "Fotos de Estudio",
     moreVideos: "Si estás interesado en ver más videos, contáctanos para más material.",
     youtubeChannel: "Canal de YouTube",
   },
@@ -68,7 +72,7 @@ function Navigation({ t, lang, onLangChange }: { t: typeof translations.en; lang
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/95 backdrop-blur-sm border-b border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 font-display text-xl md:text-2xl font-bold text-[#d4a72c]">
+        <Link href="/intro" className="flex items-center gap-2 font-display text-xl md:text-2xl font-bold text-[#d4a72c]">
           <img src="/logo-nav.png" alt="Logo" className="w-6 h-6" />
           José Salazar
         </Link>
@@ -134,7 +138,7 @@ function Footer({ t }: { t: typeof translations.en }) {
   return (
     <footer className="py-6 md:py-8 px-4 md:px-6 bg-[#faf9f7] border-t border-[#e5e5e5]">
       <div className="max-w-7xl mx-auto text-center">
-        <p className="text-sm text-[#6b6b6b] mb-4">© 2026 José Salazar. Photo by Lope Valles.</p>
+        <p className="text-sm text-[#6b6b6b] mb-4">© 2026 José Salazar. Todos los derechos reservados.</p>
         <div className="flex justify-center gap-6">
           <a href="https://www.instagram.com/josesalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#d4a72c] hover:text-[#b8962e] transition-colors uppercase tracking-wider text-sm">Instagram</a>
           <a href="https://youtube.com/@jasalazarconductor" target="_blank" rel="noopener noreferrer" className="text-[#d4a72c] hover:text-[#b8962e] transition-colors uppercase tracking-wider text-sm">YouTube</a>
@@ -148,6 +152,7 @@ export default function GalleryPage({ searchParams }: { searchParams: { lang?: s
   const [lang, setLang] = useState<Language>("en");
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<"videos" | "photos">("videos");
+  const [activePhotoCategory, setActivePhotoCategory] = useState<"action" | "studio">("action");
 
   useEffect(() => {
     setMounted(true);
@@ -171,19 +176,35 @@ export default function GalleryPage({ searchParams }: { searchParams: { lang?: s
   
   // YouTube video IDs from document
   const videos = [
+    { id: "VU6jnpDvT1k", title: "Performance 4" },
+    { id: "Hq8BmWUL5hg", title: "Performance 5" },
+    { id: "3S_XDRBQduo", title: "Performance 6" },
     { id: "97_IlMryI-A", title: "Performance 1" },
     { id: "b5wP8Y-M4Qs", title: "Performance 2" },
     { id: "SIRyXG1Mmck", title: "Performance 3" },
   ];
 
-  // Gallery photos
-  const photos = [
-    "/gallery-1.jpg",
-    "/gallery-2.jpg",
-    "/gallery-3.jpg",
-    "/gallery-4.jpg",
-    "/gallery-5.jpg",
-    "/gallery-6.jpg",
+  // Gallery photos with generic credits (to be updated)
+  const actionPhotos = [
+    { src: "/gallery-15.jpg", credit: "Photo by Elly Welford", objectPosition: "center" },
+    { src: "/gallery-16.jpg", credit: "Photo by Elly Welford", objectPosition: "center" },
+    { src: "/gallery-1.jpg", credit: "Photo by Ivan Gonzales", objectPosition: "center" },
+    { src: "/gallery-2.jpg", credit: "Photo by Chris Roe", objectPosition: "center" },
+    { src: "/gallery-3.jpg", credit: "Photo by Mariza Kapsabeli", objectPosition: "center" },
+    { src: "/gallery-4.jpg", credit: "Photo by Mariza Kapsabeli", objectPosition: "30% 30%" },
+    { src: "/gallery-5.jpg", credit: "Photo by Giannis Antonoglou", objectPosition: "35% 25%" },
+    { src: "/gallery-6.jpg", credit: "Photo by Clive Barda", objectPosition: "center" },
+  ];
+
+  const studioPhotos: { src: string; credit: string; objectPosition: string }[] = [
+    { src: "/gallery-7.jpg", credit: "Photo by Lope Valles", objectPosition: "center" },
+    { src: "/gallery-8.jpg", credit: "Photo by Lope Valles", objectPosition: "center" },
+    { src: "/gallery-9.jpg", credit: "Photo by Lope Valles", objectPosition: "center" },
+    { src: "/gallery-10.jpg", credit: "Photo by Lope Valles", objectPosition: "center" },
+    { src: "/gallery-11.jpg", credit: "Photo by Lope Valles", objectPosition: "center" },
+    { src: "/gallery-12.jpg", credit: "Photo by Lope Valles", objectPosition: "center" },
+    { src: "/gallery-13.jpg", credit: "Photo by Giannis Antonoglou", objectPosition: "center" },
+    { src: "/gallery-14.jpg", credit: "Photo by Giannis Antonoglou", objectPosition: "center" },
   ];
 
   return (
@@ -267,19 +288,41 @@ export default function GalleryPage({ searchParams }: { searchParams: { lang?: s
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
+                  className="space-y-8"
                 >
-                  {photos.map((src, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.05 }}
-                      className="aspect-[3/4] overflow-hidden"
+                  {/* Category selector for photos */}
+                  <div className="flex justify-center gap-8 mb-8">
+                    <button
+                      onClick={() => setActivePhotoCategory("action")}
+                      className={`text-sm uppercase tracking-wider transition-colors ${activePhotoCategory === "action" ? "text-[#d4a72c] border-b-2 border-[#d4a72c]" : "text-[#6b6b6b] hover:text-[#1a1a1a]"} pb-1`}
                     >
-                      <img src={src} alt={`Gallery ${i + 1}`} className="w-full h-full object-cover" />
-                    </motion.div>
-                  ))}
+                      {t.actionPictures}
+                    </button>
+                    <button
+                      onClick={() => setActivePhotoCategory("studio")}
+                      className={`text-sm uppercase tracking-wider transition-colors ${activePhotoCategory === "studio" ? "text-[#d4a72c] border-b-2 border-[#d4a72c]" : "text-[#6b6b6b] hover:text-[#1a1a1a]"} pb-1`}
+                    >
+                      {t.studioPictures}
+                    </button>
+                  </div>
+
+                  {/* Photo grid with white frame and credits */}
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                    {(activePhotoCategory === "action" ? actionPhotos : studioPhotos).map((photo, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.05 }}
+                        className="bg-white p-3 shadow-md"
+                      >
+                        <div className="aspect-[3/4] overflow-hidden">
+                          <img src={photo.src} alt={`Gallery ${i + 1}`} className="w-full h-full object-cover" style={{ objectPosition: photo.objectPosition || 'center' }} />
+                        </div>
+                        <p className="text-center text-xs text-[#6b6b6b] mt-3 uppercase tracking-wider">{photo.credit}</p>
+                      </motion.div>
+                    ))}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
