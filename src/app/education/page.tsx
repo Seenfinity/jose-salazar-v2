@@ -197,7 +197,7 @@ export default function EducationPage({ searchParams }: { searchParams: { lang?:
                 alt="José Salazar - Education"
                 className="float-left mr-8 mb-4 w-full md:w-1/2 max-w-md"
               />
-              <div className="text-[#6b6b6b] leading-relaxed max-w-2xl">
+              <div className="text-[#6b6b6b] leading-relaxed">
                 <p className="text-xl md:text-2xl text-[#1a1a1a] font-serif text-justify mb-6">{t.intro}</p>
                 {t.body.split('\n\n').map((paragraph, index) => (
                   <p key={index} className="text-base md:text-lg text-justify mb-4">{paragraph}</p>
