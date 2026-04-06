@@ -156,9 +156,9 @@ interface Performance {
 const upcomingPerformances: Performance[] = [
   { date: "Jun-Jul 2026", event: "Royal Ballet on Tour: Japan", venue: "The Royal Ballet", location: "Tokyo, Japan", role: "Conductor" },
   { date: "May-Jun 2026", event: "La Fille mal gardée", venue: "Royal Ballet", location: "Covent Garden, London", role: "Conductor" },
-  { date: "2026", event: "Symphonies for Schools", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Conductor" },
   { date: "Apr 25-26 2026", event: "John Adams & Víkingur Ólafsson", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Cover Conductor" },
   { date: "Apr 17-19 2026", event: "Shostakovich & Sibelius", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Cover Conductor" },
+  { date: "Mar 19-20 2026", event: "Symphonies for Schools", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Conductor" },
   { date: "Mar 13-16 2026", event: "John Williams & Rachmaninoff", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Cover Conductor" },
   { date: "Feb 20-22 2026", event: "Gustavo Conducts Beethoven: Missa Solemnis", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Cover Conductor" },
   { date: "Feb 12-15 2026", event: "Dudamel Conducts Beethoven and Lorenz", venue: "Los Angeles Philharmonic", location: "Walt Disney Concert Hall", role: "Cover Conductor" },
