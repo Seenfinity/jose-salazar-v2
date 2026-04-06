@@ -220,9 +220,9 @@ export default function AboutPage({ searchParams }: { searchParams: { lang?: str
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="flex flex-col justify-start space-y-6 text-[#6b6b6b] leading-relaxed">
+              <div className="flex flex-col justify-start space-y-6 text-[#6b6b6b] leading-relaxed max-w-2xl">
                 {t.bio.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="text-base md:text-lg">{paragraph}</p>
+                  <p key={index} className="text-base md:text-lg text-justify">{paragraph}</p>
                 ))}
               </div>
             </div>
