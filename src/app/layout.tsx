@@ -16,6 +16,7 @@ const crimsonText = Crimson_Text({
 export const metadata: Metadata = {
   title: "José Salazar | Orchestral Conductor",
   description: "Jette Parker Ballet Conductor at the Royal Opera House London. Dudamel Fellow with the Los Angeles Philharmonic.",
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({
