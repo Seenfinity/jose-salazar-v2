@@ -153,14 +153,14 @@ function LandingPage({ onEnter, lang, onLangChange }: { onEnter: () => void; lan
             <button
               onClick={() => onLangChange("en")}
               className={`px-4 py-2 border transition-colors ${lang === "en" ? "border-[#d4a72c] text-[#d4a72c]" : "border-[white] text-[white] hover:border-white hover:text-white"}`}
-              style={{ boxShadow: "0 0 10px rgba(255,255,255,0.5)" }}
+              style={{ boxShadow: "0 0 10px rgba(255,255,255,0.5)", backgroundColor: "rgba(255,255,255,0.9)" }}
             >
               English
             </button>
             <button
               onClick={() => onLangChange("es")}
               className={`px-4 py-2 border transition-colors ${lang === "es" ? "border-[#d4a72c] text-[#d4a72c]" : "border-[white] text-[white] hover:border-white hover:text-white"}`}
-              style={{ boxShadow: "0 0 10px rgba(255,255,255,0.5)" }}
+              style={{ boxShadow: "0 0 10px rgba(255,255,255,0.5)", backgroundColor: "rgba(255,255,255,0.9)" }}
             >
               Español
             </button>
