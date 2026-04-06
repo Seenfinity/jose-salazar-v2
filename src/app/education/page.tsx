@@ -199,10 +199,10 @@ export default function EducationPage({ searchParams }: { searchParams: { lang?:
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="flex flex-col justify-start space-y-6 text-[#6b6b6b] leading-relaxed">
-                <p className="text-xl md:text-2xl text-[#1a1a1a] font-serif">{t.intro}</p>
+              <div className="flex flex-col justify-start space-y-6 text-[#6b6b6b] leading-relaxed max-w-2xl">
+                <p className="text-xl md:text-2xl text-[#1a1a1a] font-serif text-justify">{t.intro}</p>
                 {t.body.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="text-base md:text-lg">{paragraph}</p>
+                  <p key={index} className="text-base md:text-lg text-justify">{paragraph}</p>
                 ))}
               </div>
             </div>
