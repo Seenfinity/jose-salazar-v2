@@ -212,17 +212,15 @@ export default function AboutPage({ searchParams }: { searchParams: { lang?: str
             <h1 className="font-display text-5xl md:text-7xl text-[#1a1a1a] mb-6 md:mb-8">{t.title}</h1>
             <div className="w-16 md:w-24 h-[2px] bg-[#d4a72c] mb-8 md:mb-12" />
             
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-              <div className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden h-fit">
-                <img 
-                  src="/about-hero.jpg" 
-                  alt="José Salazar"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex flex-col justify-start space-y-6 text-[#6b6b6b] leading-relaxed max-w-2xl">
+            <div className="clear-both">
+              <img 
+                src="/about-hero.jpg" 
+                alt="José Salazar"
+                className="float-left mr-8 mb-4 w-full md:w-1/2 max-w-md"
+              />
+              <div className="text-[#6b6b6b] leading-relaxed">
                 {t.bio.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="text-base md:text-lg text-justify">{paragraph}</p>
+                  <p key={index} className="text-base md:text-lg text-justify mb-4">{paragraph}</p>
                 ))}
               </div>
             </div>
