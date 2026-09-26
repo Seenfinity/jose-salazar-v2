@@ -34,6 +34,7 @@ const translations = {
     website: "Website",
     email: "Email",
     mobile: "Mobile",
+    viewProfile: "View Artist Profile",
   },
   es: {
     nav: {
@@ -49,6 +50,7 @@ const translations = {
     website: "Sitio Web",
     email: "Correo",
     mobile: "Móvil",
+    viewProfile: "Ver Perfil del Artista",
   },
 };
 
@@ -214,9 +216,9 @@ export default function ContactPage({ searchParams }: { searchParams: { lang?: s
                   href={management.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-[#6b6b6b] hover:text-[#d4a72c] transition-colors break-all"
+                  className="inline-block px-6 py-3 bg-[#d4a72c] text-white hover:bg-[#b8962e] transition-colors uppercase tracking-wider text-sm"
                 >
-                  {management.website}
+                  {t.viewProfile}
                 </a>
 
                 <div className="border-b border-[#e5e5e5] my-6" />
@@ -249,7 +251,7 @@ export default function ContactPage({ searchParams }: { searchParams: { lang?: s
                       rel="noopener noreferrer"
                       className="block text-sm text-[#6b6b6b] hover:text-[#d4a72c] transition-colors"
                     >
-                      {management.manager.website}
+                      {management.manager.website.replace(/^https:\/\/|\/$/g, "")}
                     </a>
                   </div>
                 </div>
