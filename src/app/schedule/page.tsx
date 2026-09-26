@@ -29,6 +29,7 @@ const translations = {
       contact: "Contact",
     },
     title: "Performances",
+    season2627: "2026/27 Season",
     upcoming: "2025/26 Season",
     past2024: "2024/2025",
     past2023: "2023/2024",
@@ -42,6 +43,7 @@ const translations = {
       contact: "Contacto",
     },
     title: "Actuaciones",
+    season2627: "Temporada 2026/27",
     upcoming: "Temporada 2025/26",
     past2024: "2024/2025",
     past2023: "2023/2024",
@@ -152,6 +154,18 @@ interface Performance {
   role: string;
   notes?: string;
 }
+
+const performances2026: Performance[] = [
+  { date: "Aug 2027", event: "Works by Markeas, Elgar and Rachmaninov", venue: "Edinburgh Youth Orchestra", location: "Scotland", role: "Conductor" },
+  { date: "May 2027", event: "Works by Bizet, Mahler and Jeths", venue: "Dutch National Ballet on Tour", location: "Netherlands", role: "Conductor" },
+  { date: "Apr 2027", event: "Family Concert", venue: "WDR Funkhausorchester Köln", location: "Cologne, Germany", role: "Conductor" },
+  { date: "Mar 2027", event: "Giselle by Lamagna (Chor. Akram Khan)", venue: "Teatro alla Scala", location: "Milan, Italy", role: "Conductor" },
+  { date: "Jan-Feb 2027", event: "TBC", venue: "New York City Ballet", location: "New York, NY, USA", role: "Conductor" },
+  { date: "Dec 2026", event: "Giselle by Adam", venue: "Greek National Opera", location: "Athens, Greece", role: "Conductor" },
+  { date: "Nov 2026", event: "Works by Bizet, Mahler and Jeths", venue: "Dutch National Ballet on Tour", location: "Netherlands", role: "Conductor" },
+  { date: "Oct 2026", event: "Works by Beethoven, Shor and Tchaikovsky", venue: "National Orchestra of Uzbekistan", location: "Tashkent, Uzbekistan", role: "Conductor" },
+  { date: "Aug 2026", event: "Gustavo Dudamel's Last Concerts as Music and Artistic Director, programs with Anna Handler and Gemma New", venue: "Los Angeles Philharmonic", location: "Los Angeles, CA, USA", role: "Assistant and Cover Conductor" },
+];
 
 const upcomingPerformances: Performance[] = [
   { date: "Jun-Jul 2026", event: "Royal Ballet on Tour: Japan", venue: "The Royal Ballet", location: "Tokyo, Japan", role: "Conductor" },
@@ -276,6 +290,14 @@ export default function SchedulePage({ searchParams }: { searchParams: { lang?: 
             <h1 className="font-display text-5xl md:text-7xl text-[#1a1a1a] mb-6 md:mb-8">{t.title}</h1>
             <div className="w-16 md:w-24 h-[2px] bg-[#d4a72c] mb-10 md:mb-16" />
             
+            {/* 2026/27 Season */}
+            <div className="mb-12 md:mb-16">
+              <h2 className="font-display text-2xl md:text-3xl text-[#1a1a1a] mb-6">{t.season2627}</h2>
+              {performances2026.map((perf, i) => (
+                <PerformanceItem key={i} performance={perf} />
+              ))}
+            </div>
+
             {/* Upcoming */}
             <div className="mb-12 md:mb-16">
               <h2 className="font-display text-2xl md:text-3xl text-[#1a1a1a] mb-6">{t.upcoming}</h2>

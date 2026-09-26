@@ -33,7 +33,7 @@ const translations = {
     generalManagement: "General Management",
     website: "Website",
     email: "Email",
-    phone: "Phone",
+    mobile: "Mobile",
   },
   es: {
     nav: {
@@ -48,7 +48,7 @@ const translations = {
     generalManagement: "Gestión General",
     website: "Sitio Web",
     email: "Correo",
-    phone: "Teléfono",
+    mobile: "Móvil",
   },
 };
 
@@ -147,15 +147,18 @@ function Footer({ t }: { t: typeof translations.en }) {
   );
 }
 
-// Contact info from document
+// Contact info
 const management = {
-  company: "James Brown Management",
-  website: "https://www.jamesbrownmanagement.com/artists/jose-salazar/",
-  managers: [
-    { name: "James Brown", title: "Artist Manager", email: "jb@jamesbrownmanagement.com", phone: "+44 (0) 1223 641750" },
-    { name: "Jessica Grime", title: "Artist Manager", email: "jmg@jamesbrownmanagement.com", phone: "+44 (0) 7599 107 892" },
-    { name: "Flora Dyson", title: "Assistant Artist Manager", email: "fd@jamesbrownmanagement.com", phone: "+44 (0) 1223 641753" },
-  ],
+  company: "Keynote Artist Management",
+  website: "https://keynoteartistmanagement.com/artists/jos%C3%A9-salazar/",
+  manager: {
+    name: "Jessica Grime",
+    title: "Artist Manager, Keynote Artist Management",
+    email: "jess@keynoteam.com",
+    phone: "+44 (0) 7599 107892",
+    tel: "+447599107892",
+    website: "https://keynoteartistmanagement.com/",
+  },
 };
 
 export default function ContactPage({ searchParams }: { searchParams: { lang?: string } }) {
@@ -211,32 +214,44 @@ export default function ContactPage({ searchParams }: { searchParams: { lang?: s
                   href={management.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-[#6b6b6b] hover:text-[#d4a72c] transition-colors mb-6"
+                  className="inline-block text-[#6b6b6b] hover:text-[#d4a72c] transition-colors break-all"
                 >
                   {management.website}
                 </a>
 
-                <div className="space-y-6">
-                  {management.managers.map((manager, i) => (
-                    <div key={i} className="pb-6 border-b border-[#e5e5e5] last:border-0 last:pb-0">
-                      <h4 className="font-medium text-[#1a1a1a]">{manager.name}</h4>
-                      <p className="text-sm text-[#d4a72c] mb-2">{manager.title}</p>
-                      <div className="space-y-1">
-                        <a 
-                          href={`mailto:${manager.email}`}
-                          className="block text-sm text-[#6b6b6b] hover:text-[#d4a72c] transition-colors"
-                        >
-                          {manager.email}
-                        </a>
-                        <a 
-                          href={`tel:${manager.phone}`}
-                          className="block text-sm text-[#6b6b6b] hover:text-[#d4a72c] transition-colors"
-                        >
-                          {manager.phone}
-                        </a>
-                      </div>
-                    </div>
-                  ))}
+                <div className="border-b border-[#e5e5e5] my-6" />
+
+                <div>
+                  <h4 className="font-medium text-[#1a1a1a]">{management.manager.name}</h4>
+                  <p className="text-sm text-[#d4a72c] mb-2">{management.manager.title}</p>
+                  <div className="space-y-1">
+                    <p className="text-sm text-[#6b6b6b]">
+                      {t.email}:{" "}
+                      <a
+                        href={`mailto:${management.manager.email}`}
+                        className="hover:text-[#d4a72c] transition-colors"
+                      >
+                        {management.manager.email}
+                      </a>
+                    </p>
+                    <p className="text-sm text-[#6b6b6b]">
+                      {t.mobile}:{" "}
+                      <a
+                        href={`tel:${management.manager.tel}`}
+                        className="hover:text-[#d4a72c] transition-colors"
+                      >
+                        {management.manager.phone}
+                      </a>
+                    </p>
+                    <a
+                      href={management.manager.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-sm text-[#6b6b6b] hover:text-[#d4a72c] transition-colors"
+                    >
+                      {management.manager.website}
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
